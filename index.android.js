@@ -4,6 +4,8 @@ import {
   AppRegistry,
 } from 'react-native';
 
+var TwittList = require('./twittlist.js')
+
 export default class TwitterTwitt extends Component {
 	render() {
 		return (
@@ -19,20 +21,7 @@ export default class TwitterTwitt extends Component {
 					</Button>
 				</Header>
 				<Content>
-					<Card>
-						<CardItem >                       
-							<Text>NativeBase</Text>
-							<Text note>April 15, 2016</Text>
-						</CardItem>
-						<CardItem cardBody>
-							<Text>
-								//Your text here
-							</Text>
-							<Button transparent textStyle={{color: '#87838B'}}>
-								389 Stars
-							</Button>
-						</CardItem>
-					</Card>
+					<TwittList/>
 				</Content>
 			</Container>
 		);
