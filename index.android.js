@@ -1,4 +1,4 @@
-import React, { Component, Image, Navigator } from 'react';
+import React, { Component, Navigator } from 'react';
 import { Container, Header, Icon, Title, Content, Card, CardItem, Text, Thumbnail, Button } from 'native-base';
 import {
   AppRegistry,
@@ -12,17 +12,17 @@ export default class TwitterTwitt extends Component {
 			<Container>
 				<Header>
 					<Button transparent>
-						<Icon name='ios-arrow-back' />
+						<Icon name='logo-twitter' />
 					</Button>
 
-					<Title>Header</Title>
+					<Title>TwitterTwitt</Title>
 					<Button transparent>
 						<Icon name='ios-menu' />
 					</Button>
 				</Header>
-				<Content>
+					<Content>
 					<TwittList/>
-				</Content>
+					</Content>
 			</Container>
 		);
 	}

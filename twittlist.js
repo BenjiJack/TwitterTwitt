@@ -1,4 +1,5 @@
-import React, { Component, Image, Navigator } from 'react';
+import React, { Component, Navigator } from 'react';
+import { Image } from 'react-native';
 import { Container, Header, Icon, Title, Content, Card, CardItem, Text, Thumbnail, Button } from 'native-base';
 
 var base64 = require('base-64');
@@ -15,8 +16,19 @@ class TwittList extends Component {
 
 		this.state = {
 			handle: main_user,
-			users: 	[],
-			json: "",
+			users: 	[
+						{
+							'name': 'test',
+							'screen_name': 'test',
+							'description': 'test description',
+						},
+						{
+							'name': 'test2',
+							'screen_name': 'test2',
+							'description': 'test description2',
+						},
+					],
+			data: [],
 			token: "",
 			consumer_secret: secret.toString('base64'),
 			consumer_key: key.toString('base64'),
@@ -65,14 +77,41 @@ class TwittList extends Component {
 	};
 
 	render() {
+		
+		var cards = this.state.users.map(function(user, i){
+			
+			if (user.status) {
+				status = <CardItem cardBody key={i+4}>
+							<Text>{user.status.text}{"\n"}
+							{user.status.created_at}
+							</Text>
+						</CardItem>
+			} else {
+				status = <CardItem cardBody><Text>{"\n"}{"\n"}{"\n"}</Text></CardItem>;
+			}
+
+			return  (
+				<Content key={i}>
+					<CardItem key={i+1}>
+						<Thumbnail source={{uri: user.profile_image_url_https}} />                       
+						<Text style={{fontWeight: 'bold'}}>{user.name}</Text>
+						<Text note>@{user.screen_name}</Text>
+					</CardItem>
+					<CardItem key={i+2}>
+						<Text>{user.description}</Text>
+					</CardItem>
+					<CardItem key={i+3}>
+						<Image style={{ resizeMode: 'cover' }} source={{uri: user.profile_banner_url + "/mobile_retina" }} /> 
+					</CardItem>
+					{status}
+				</Content>
+
+			);
+		});
+
 		return (
-			<Card dataArray={this.state.users}
-					renderRow={(user) =>
-				<CardItem>                       
-					<Text>{user.name}</Text>
-					<Text note>{user.screen_name}</Text>
-				</CardItem>
-				}>
+			<Card>
+				{cards}
 			</Card>
 		);
 	};
